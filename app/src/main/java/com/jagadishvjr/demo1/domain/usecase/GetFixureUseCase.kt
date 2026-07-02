@@ -12,9 +12,12 @@ class GetFixureUseCase @Inject constructor(
 
         return when (val result = repository.getFixtures()){
             is AppResult.Error -> result
-            is AppResult.Success -> AppResult.Success(result.data)
-
+            is AppResult.Success -> {
+                val fixtures = result.data
+                    .filter { it.name.isNotBlank() }
+                    .sortedBy { it.name.lowercase() }
+                AppResult.Success(fixtures)
+            }
         }
-
     }
 }

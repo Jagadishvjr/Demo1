@@ -7,7 +7,6 @@ data class FootballResult(
     val data: List<FixureDto>
 )
 
-
 data class FixureDto(
     @SerializedName("id")
     val id: Long,

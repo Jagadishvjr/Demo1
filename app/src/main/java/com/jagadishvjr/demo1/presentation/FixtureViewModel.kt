@@ -44,5 +44,4 @@ class FixtureViewModel @Inject constructor(
 
         }
     }
-
 }

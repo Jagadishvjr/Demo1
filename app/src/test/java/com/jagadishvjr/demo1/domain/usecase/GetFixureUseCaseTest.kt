@@ -18,6 +18,7 @@ class GetFixureUseCaseTest {
     @Test
     fun `invoke returns success when repository returns success`() = runTest {
         val fixtures = listOf(
+            Fixure(id = 2L, name = "Team B vs Team C", resultInfo = "Finished"),
             Fixure(id = 1L, name = "Team A vs Team B", resultInfo = "Finished")
         )
         coEvery { repository.getFixtures() } returns AppResult.Success(fixtures)
@@ -25,7 +26,31 @@ class GetFixureUseCaseTest {
         val result = useCase()
 
         assertTrue(result is AppResult.Success)
-        assertEquals(fixtures, (result as AppResult.Success).data)
+        assertEquals(
+            listOf(
+                Fixure(id = 1L, name = "Team A vs Team B", resultInfo = "Finished"),
+                Fixure(id = 2L, name = "Team B vs Team C", resultInfo = "Finished")
+            ),
+            (result as AppResult.Success).data
+        )
+    }
+
+
+    @Test
+    fun `invoke removes fixtures with blank names`() = runTest {
+        val fixtures = listOf(
+            Fixure(id = 1L, name = "", resultInfo = "Finished"),
+            Fixure(id = 2L, name = "Team B vs Team C", resultInfo = "Finished")
+        )
+        coEvery { repository.getFixtures() } returns AppResult.Success(fixtures)
+
+        val result = useCase()
+
+        assertTrue(result is AppResult.Success)
+        assertEquals(
+            listOf(Fixure(id = 2L, name = "Team B vs Team C", resultInfo = "Finished")),
+            (result as AppResult.Success).data
+        )
     }
 
     @Test
@@ -38,3 +63,5 @@ class GetFixureUseCaseTest {
         assertEquals("Network error", (result as AppResult.Error).message)
     }
 }
+
+
