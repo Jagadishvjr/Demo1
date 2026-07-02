@@ -14,18 +14,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jagadishvjr.demo1.ui.theme.Demo1Theme
-import com.jagadishvjr.presentation.UserRoute
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
             Demo1Theme {
-                UserRoute()
+                Greeting("Android")
             }
         }
     }
