@@ -2,6 +2,7 @@ package com.jagadishvjr.demo1
 
 import com.jagadishvjr.demo1.data.remote.UserApiService
 import com.jagadishvjr.demo1.data.remote.dto.AddressDto
+import com.jagadishvjr.demo1.data.remote.dto.GeoDto
 import com.jagadishvjr.demo1.data.remote.dto.UserDto
 import com.jagadishvjr.demo1.data.repository.UserRepositoryImpl
 import io.mockk.coEvery
@@ -25,6 +26,10 @@ class UserRepositoryTest {
                 phone = "9603343",
                 address = AddressDto(
                     city = "Hyd",
+                    geo = GeoDto(
+                        lat = "17.3850",
+                        lng = "78.4867"
+                    ),
                     zipcode = "500086"
                 )
             )
@@ -40,6 +45,8 @@ class UserRepositoryTest {
         assertEquals("Jagdish", result[0].name)
         assertEquals("Hyd", result[0].address.city)
         assertEquals("500086", result[0].address.zipcode)
+        assertEquals(17.3850, result[0].address.geo.lat, 0.0)
+        assertEquals(78.4867, result[0].address.geo.lng, 0.0)
         coVerify(exactly = 1) { userApiService.getUsers() }
     }
 }

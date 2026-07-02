@@ -2,6 +2,7 @@ package com.jagadishvjr.demo1.data.mapper
 
 import com.jagadishvjr.demo1.data.remote.dto.UserDto
 import com.jagadishvjr.demo1.domin.model.Address
+import com.jagadishvjr.demo1.domin.model.Geo
 import com.jagadishvjr.demo1.domin.model.User
 
 fun UserDto.toDomain() : User {
@@ -14,6 +15,10 @@ fun UserDto.toDomain() : User {
         phone = phone,
         address = Address(
             city = address.city,
+            geo = Geo(
+                lat = address.geo.lat.toDouble(),
+                lng = address.geo.lng.toDouble()
+            ),
             zipcode = address.zipcode
         )
     )

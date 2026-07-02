@@ -1,6 +1,7 @@
 package com.jagadishvjr.demo1
 
 import com.jagadishvjr.demo1.domin.model.Address
+import com.jagadishvjr.demo1.domin.model.Geo
 import com.jagadishvjr.demo1.domin.model.User
 import com.jagadishvjr.demo1.domin.usecase.GetUserUseCase
 import com.jagadishvjr.presentation.UserUiState
@@ -29,12 +30,17 @@ class UserViewModelTest{
             User(
                 id = 101,
                 name = "Jagdish",
+                distanceFromCurrentUserKm = 12.5,
                 username = "vjr",
                 email = "vjr@mail.com",
                 website = "abc",
                 phone = "9603343",
                 address = Address(
                     city = "Hyd",
+                    geo = Geo(
+                        lat = 17.3850,
+                        lng = 78.4867
+                    ),
                     zipcode = "500086"
                 )
             )

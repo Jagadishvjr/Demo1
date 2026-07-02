@@ -1,6 +1,7 @@
 package com.jagadishvjr.demo1
 
 import com.jagadishvjr.demo1.domin.model.Address
+import com.jagadishvjr.demo1.domin.model.Geo
 import com.jagadishvjr.demo1.domin.model.User
 import com.jagadishvjr.demo1.domin.repository.UserRepository
 import com.jagadishvjr.demo1.domin.usecase.GetUserUseCase
@@ -9,6 +10,8 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class GetUserUseCaseTest {
@@ -29,7 +32,9 @@ class GetUserUseCaseTest {
 
         val result = useCase()
 
-        assertEquals(listOf(users[0], users[2], users[4]), result)
+        assertEquals(listOf("Alice", "Esha", "uma"), result.map { it.name })
+        assertNotNull(result[0].distanceFromCurrentUserKm)
+        assertTrue(result[0].distanceFromCurrentUserKm!! > 0)
         coVerify(exactly = 1) { repository.getUsers() }
     }
 
@@ -43,6 +48,10 @@ class GetUserUseCaseTest {
             phone = "345346777",
             address = Address(
                 city = "Hyd",
+                geo = Geo(
+                    lat = 17.3850 + id,
+                    lng = 78.4867 + id
+                ),
                 zipcode = "500086"
             )
         )

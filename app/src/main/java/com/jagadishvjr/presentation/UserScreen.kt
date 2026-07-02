@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import java.util.Locale
 
 @Composable
 fun UserRoute(viewModel: UserViewModel = hiltViewModel()){
@@ -64,6 +65,13 @@ fun UserScreen(state: UserUiState){
 
                             Spacer(modifier = Modifier.fillMaxWidth().padding(6.dp))
                             Text(text = user.address.zipcode)
+
+                            user.distanceFromCurrentUserKm?.let { distance ->
+                                Spacer(modifier = Modifier.fillMaxWidth().padding(6.dp))
+                                Text(
+                                    text = "Distance: ${"%.2f".format(Locale.US, distance)} km"
+                                )
+                            }
                         }
 
                     }

@@ -5,6 +5,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.jagadishvjr.demo1.domin.model.Address
+import com.jagadishvjr.demo1.domin.model.Geo
 import com.jagadishvjr.demo1.domin.model.User
 import com.jagadishvjr.demo1.ui.theme.Demo1Theme
 import com.jagadishvjr.presentation.UserScreen
@@ -46,12 +47,17 @@ class UserScreenTest {
             User(
                 id = 101,
                 name = "Jagdish",
+                distanceFromCurrentUserKm = 12.5,
                 username = "vjr",
                 email = "vjr@mail.com",
                 website = "abc",
                 phone = "9603343",
                 address = Address(
                     city = "Hyd",
+                    geo = Geo(
+                        lat = 17.3850,
+                        lng = 78.4867
+                    ),
                     zipcode = "500086"
                 )
             )
@@ -65,5 +71,6 @@ class UserScreenTest {
 
         composeRule.onNodeWithText("Jagdish").assertExists()
         composeRule.onNodeWithText("Hyd").assertExists()
+        composeRule.onNodeWithText("Distance: 12.50 km").assertExists()
     }
 }
