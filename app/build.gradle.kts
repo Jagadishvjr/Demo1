@@ -20,6 +20,17 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildTypes{
+
+        debug {
+            buildConfigField(
+                "String",
+                "AUTH_TOKEN",
+                "\"h19ORBBbaoX7hi5ClgZwq4vj6xhqu5wVn86PNREiLZB4dyzdI62hL0h8o3gw\""
+            )
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -30,6 +41,8 @@ android {
             excludes += "META-INF/versions/9/OSGI-INF/MANIFEST.MF"
         }
     }
+
+    android.buildFeatures.buildConfig = true
 }
 
 kotlin {
