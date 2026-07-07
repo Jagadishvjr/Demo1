@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Demo1</string>
+    <string name="users_screen_title">Users</string>
+    <string name="users_empty_message">No users available</string>
+    <string name="users_tab_label">Users</string>
+    <string name="fixtures_screen_title">Fixtures</string>
+    <string name="fixtures_empty_message">No fixtures available</string>
+    <string name="fixtures_tab_label">Fixtures</string>
+    <string name="address_label">Address: %1$s</string>
+    <string name="geo_label">Geo: lat %1$.4f, lng %2$.4f</string>
+    <string name="distance_label">Distance: %1$.2f km</string>
+    <string name="distance_unavailable_label">Distance unavailable</string>
 </resources>
